@@ -90,7 +90,6 @@
           <nav class="site-navigation position-relative text-right" role="navigation">
             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
 
-              @if(Auth::check())
               <li>
                 <a href="{{ url('home') }}" class="nav-link text-left">Home</a>
               </li>
@@ -109,8 +108,7 @@
                 <a href="contact.html" class="nav-link text-left">Contact</a>
               </li>
             </ul>
-            @else
-            @endif                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                   
           </nav>
 
         </div>

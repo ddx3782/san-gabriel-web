@@ -1,4 +1,4 @@
-@include('layouts.backend.admin.header')
+@include('layouts.backend.superadmin.header')
 <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -6,7 +6,8 @@
                   <p class="card-description">
                     Basic form layout
                   </p>
-                  <form class="forms-sample">
+                  <form action="{{ url('save/admin/') }}" method="post" class="forms-sample">
+                  	{{ csrf_field() }}
                     <div class="form-group">
                       <label for="exampleInputUsername1">Firstname</label>
                       <input name="firstname" type="text" class="form-control" id="exampleInputUsername1" placeholder="Firstname">
@@ -47,6 +48,4 @@
                 </div>
               </div>
             </div>
-
-<!--     footer starts here -->
-@include('layouts.backend.admin.footer')
+@include('layouts.backend.superadmin.footer')

@@ -11,24 +11,15 @@ class UserController extends Controller
 {
     public function showHome()
     {
-        // bawal pumunta sa home pag di naka login
-        if (Auth::check()) {
-            // kapag ang nkalog in ay user puntang frontend home
-            if (Auth::user()->role == 'user') {
-                // code...
-                return view('frontend.home');
-            }
-        }
-        else
-        {
-            return redirect('login');
-        }
         
+            return view('frontend.home');
+
     }
 
     //DO"S//////////////////////////////////////////////////////////////////////////
     public function doLogin(Request $request)
     {
+        //FOR USER'S
         if (Auth::attempt(['status' => 1 , 'role' => 'user' , 'email' => $request->email_phone , 'password' => $request->password])) {
             // code...
             // puntang home
@@ -41,7 +32,7 @@ class UserController extends Controller
             $request->session()->flash('success' , 'You have successfully logged in!');
             return redirect('home');
         }
-// next condition dito is para sa ADMINS at SUPERADMIN
+// FOR SUPERADMIN
         if (Auth::attempt(['status' => 1 , 'role' => 'superadmin' , 'email' => $request->email_phone , 'password' => $request->password])) {
             // code...
             // puntang home
@@ -54,6 +45,20 @@ class UserController extends Controller
             $request->session()->flash('success' , 'Welcome back Super Admin');
             return redirect('superadmin/');
         }
+//FOR ADMIN'S
+        if (Auth::attempt(['status' => 1 , 'role' => 'admin' , 'email' => $request->email_phone , 'password' => $request->password])) {
+            // code...
+            // puntang home
+            $request->session()->flash('success' , 'You have successfully logged in!');
+            return redirect('admin/');
+        }
+        if (Auth::attempt(['status' => 1 , 'role' => 'admin' , 'phone_number' => $request->email_phone , 'password' => $request->password])) {
+            // code...
+            // puntang home
+            $request->session()->flash('success' , 'You have successfully logged in!');
+            return redirect('admin/');
+        }
+
 
         else
         {

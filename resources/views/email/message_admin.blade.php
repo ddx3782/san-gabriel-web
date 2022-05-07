@@ -6,8 +6,8 @@
 	<title>Email Verification</title>
 </head>
 <body>
-	Good day {{ $user->firstname }} {{ $user->middlename }} {{ $user->lastname }} !
-	This is your pincode {{ $pincode->pincode }}
+	Good day admin {{ $user->firstname }} {{ $user->middlename }} {{ $user->lastname }} !
+	<a href="{{ url('verify/email/' . $user->id) }}">Click here</a>to verify your email.
 
 </body>
 </html>
